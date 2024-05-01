@@ -1,8 +1,7 @@
-import { PostContext } from "@/contexts/postContext"
-import { useContext } from "react"
+import { usePosts } from "@/contexts/postContext"
 
 export const Footer = () => {
-    const postCtx = useContext(PostContext)
+    const postCtx = usePosts();
     return (
         <footer>
             Total de posts: {postCtx?.posts.length}

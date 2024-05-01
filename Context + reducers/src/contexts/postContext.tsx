@@ -1,6 +1,9 @@
 import { Post } from "@/app/types/Post";
 import { PostActions, PostReducer } from "@/reducers/postReducer";
-import { createContext,Dispatch,ReactNode, useReducer } from "react";
+import { stringify } from "querystring";
+import { createContext,Dispatch,ReactNode, useContext, useEffect, useReducer } from "react";
+
+const STORAGE_KEY = 'postContextContent'
 
 type PostContextType = {
     posts: Post[];
@@ -14,7 +17,13 @@ type Props = {
 }
 
 export const PostProvider = ({children}: Props) => {
-    const [posts, dispatch] = useReducer(PostReducer, [])
+    const [posts, dispatch] = useReducer(PostReducer,
+        JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+    )
+
+    useEffect(()=> {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(posts))
+    },[posts])
 
     return (
         <div>
@@ -24,3 +33,5 @@ export const PostProvider = ({children}: Props) => {
         </div>
     )
 }
+
+export const usePosts = () => useContext(PostContext)
