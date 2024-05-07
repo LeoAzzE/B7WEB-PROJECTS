@@ -22,4 +22,4 @@ export const NameProvider = ({children} : Props) => {
         </div>
     )
 }
-export const NameCtx = useContext(NameContext)
+export const NameCtx = () => useContext(NameContext)

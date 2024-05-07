@@ -1,10 +1,14 @@
+import { NameCtx } from "@/contexts/NameContext"
 import { useState } from "react"
 
 const AskArea = ({ onStartChat } : any) => {
     const [name, setName] = useState('')
 
+    const nameCtx = NameCtx()
+
     const handleClick = () => {
         if (name !== '') {
+            nameCtx?.setName(name)
             onStartChat()
         }
     }
