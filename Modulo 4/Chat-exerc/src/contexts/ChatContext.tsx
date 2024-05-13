@@ -1,4 +1,4 @@
-import { chatReducer } from "@/app/reducers/chatReducer";
+import { chatReducer } from "../reducers/chatReducer";
 import { Message } from "@/types/Message";
 import { ReactNode, createContext, useContext, useReducer } from "react";
 
