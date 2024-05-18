@@ -1,15 +1,16 @@
 {
   "name": "primeiro-projeto-node",
   "version": "1.0.0",
-  "main": "teste.js",
+  "main": "server.ts",
   "scripts": {
-    "start" : "ts-node teste.ts"
+    "start": "node --env-file=.env --import=tsx --watch ./src/server.ts"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "ts-node": "^10.9.2",
+    "@types/node": "^20.12.12",
+    "tsx": "^4.10.5",
     "typescript": "^5.4.5"
   }
 }
