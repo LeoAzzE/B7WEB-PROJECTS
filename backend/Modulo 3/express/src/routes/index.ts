@@ -1,8 +1,12 @@
-import express from 'express';
+import express, { RequestHandler } from 'express';
+import { interferir } from '../middlewares/intervir';
 
 const router = express.Router()
 
+router.use(interferir)
+
 router.get('/ping', (req, res) => {
+    console.log('executou o ping')
     res.json( {pong: true} )
 })
 
