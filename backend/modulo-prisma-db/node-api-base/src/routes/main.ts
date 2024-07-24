@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createUser, createUsers, getAllUsers } from '../services/user';
+import { createUser, createUsers, deleteUser, getAllUsers, getUserByEmail, updateUser } from '../services/user';
 
 export const mainRouter = Router();
 
@@ -10,7 +10,7 @@ mainRouter.get('/ping', (req, res) => {
 mainRouter.post('/user', async (req,res) => {
     //validar os dados
     const user = await createUser(
-        {name: 'testador 2',email: 'teste2@hotmail.com',
+        {name: 'testador 3',email: 'teste3@hotmail.com',
         posts: {
             create: {
                 title: 'Titulo de teste 2 ',
@@ -38,4 +38,19 @@ mainRouter.post('/users', async (req,res) => {
 mainRouter.get('/users', async (req, res) => {
     const result = await getAllUsers()
     res.json({result})
+})
+
+mainRouter.get('/user', async (req,res) => {
+    const result = await getUserByEmail('joao@hotmail.com')
+        res.json({result})
+})
+
+mainRouter.put('/user', async (req, res) => {
+    const result = await updateUser()
+    res.json({result})
+})
+
+mainRouter.delete('/user', async (req, res) => {
+    const result = await deleteUser()
+    return res.status(204).json({result})
 })
